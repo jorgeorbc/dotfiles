@@ -1,0 +1,16 @@
+/* ROUNDED THEME FOR ROFI - Kanagawa Blue */
+/* Adaptado por ChatGPT basado en el trabajo de Newman Sanchez */
+
+* {
+    bg0:    #0f1117F2; /* Base - fondo principal (oscuro azulado profundo) */
+    bg1:    #1a1c22;   /* Surface - fondo secundario */
+    bg2:    #2b2e38B3; /* Overlay con opacidad (tono intermedio translúcido) */
+    bg3:    #5fafffF2; /* Highlight / accentuado (azul suave) */
+    
+    fg0:    #eaf1f8;   /* Textos principales (muy claro) */
+    fg1:    #ffffff;   /* Blanco puro */
+    fg2:    #a0a8b8;   /* Comentarios / texto tenue (gris azulado) */
+    fg3:    #2b2e38;   /* Contraste de fondo */
+}
+
+@import "template/rounded-template.rasi"
