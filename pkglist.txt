@@ -1,0 +1,31 @@
+# Base system
+grub
+networkmanager
+git
+base-devel
+
+# Qtile & Python deps
+qtile
+python
+python-xcffib
+python-cairocffi
+
+# Apps and tools
+vim
+firefox
+
+# Fonts
+noto-fonts-emoji
+ttf-jetbrains-mono-nerd
+
+# Utils
+kitty
+rofi
+scrot
+sudo
+thunar
+udiskie
+xclip
+neofetch
+eza
+picom
