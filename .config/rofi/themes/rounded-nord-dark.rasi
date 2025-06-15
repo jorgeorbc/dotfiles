@@ -1,16 +1,17 @@
-/* ROUNDED THEME FOR ROFI - Kanagawa Blue */
+/* ROUNDED THEME FOR ROFI - Gruvbox Material Dark Medium */
 /* Adaptado por ChatGPT basado en el trabajo de Newman Sanchez */
 
 * {
-    bg0:    #0f1117F2; /* Base - fondo principal (oscuro azulado profundo) */
-    bg1:    #1a1c22;   /* Surface - fondo secundario */
-    bg2:    #2b2e38B3; /* Overlay con opacidad (tono intermedio translúcido) */
-    bg3:    #5fafffF2; /* Highlight / accentuado (azul suave) */
-    
-    fg0:    #eaf1f8;   /* Textos principales (muy claro) */
-    fg1:    #ffffff;   /* Blanco puro */
-    fg2:    #a0a8b8;   /* Comentarios / texto tenue (gris azulado) */
-    fg3:    #2b2e38;   /* Contraste de fondo */
+    bg0:    #1d2021F2; /* Base background - fondo principal */
+    bg1:    #282828;   /* Surface - fondo secundario */
+    bg2:    #3c3836B3; /* Overlay translúcido */
+    bg3:    #d79921F2; /* Highlight / accentuado (amarillo dorado) */
+
+    fg0:    #ebdbb2;   /* Texto principal (claro, beige) */
+    fg1:    #fbf1c7;   /* Más claro (casi blanco cálido) */
+    fg2:    #a89984;   /* Comentarios / texto tenue */
+    fg3:    #3c3836;   /* Contraste oscuro */
 }
 
 @import "template/rounded-template.rasi"
+
