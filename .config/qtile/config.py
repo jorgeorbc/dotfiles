@@ -179,7 +179,7 @@ for i in groups:
     )
 
 # Theme Dracula
-color = myColors.Kanagawa
+color = myColors.GruvboxMaterial
 
 layout_theme = {
 "border_width": 2,
@@ -214,7 +214,7 @@ extension_defaults = widget_defaults.copy()
 screens = [
 Screen(
     wallpaper=os.path.join(
-        os.path.expanduser("~"), ".config/qtile/wallpapers/forest.jpg"
+        os.path.expanduser("~"), ".config/qtile/wallpapers/gruvbox-zelda.png"
     ),
     wallpaper_mode="fill",
     top=bar.Bar(

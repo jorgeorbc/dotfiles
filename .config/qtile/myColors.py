@@ -67,3 +67,17 @@ Kanagawa = {
     "white": "#c8c093",       # White (Old Paper)
     "orange": "#ffa066",      # Orange (Sakura Orange)
 }
+
+GruvboxMaterial = {
+    "dark": ["#1d2021"],  # Background
+    "light": ["#d4be98"],  # Light text / base
+    "gray": ["#665c54"],  # Neutral gray
+    "red": "#ea6962",      # Red (error)
+    "green": "#a9b665",    # Green (success)
+    "yellow": "#d8a657",   # Yellow (warning)
+    "blue": "#7daea3",     # Blue (info)
+    "magenta": "#d3869b",  # Magenta (accent)
+    "cyan": "#89b482",     # Cyan (accent)
+    "white": "#f2e5bc",    # Very light text
+    "orange": "#e78a4e",   # Orange (accent)
+}
