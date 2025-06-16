@@ -1,32 +1,26 @@
-vim.opt.clipboard = "unnamedplus" -- uses the clipboard register for all operations except yank.
-vim.opt.guicursor = ""
-
-vim.opt.nu = true
-vim.opt.relativenumber = true
-
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
--- vim.opt.ignorecase = true
-
+-- Indentation and formatting
 vim.opt.smartindent = true
+vim.opt.expandtab = true      -- use spaces instead of tabs
+vim.opt.shiftwidth = 4        -- indentation width
+vim.opt.softtabstop = 4       -- tab key behaves like 4 spaces
+vim.opt.textwidth = 80        -- max text width per line
+vim.opt.colorcolumn = "80"    -- vertical line at column 80
 
-vim.opt.wrap = false
+-- Visual settings
+vim.opt.wrap = false          -- disable line wrapping
+vim.opt.termguicolors = true  -- enable true color support
+vim.opt.signcolumn = "yes"    -- always show sign column
+vim.opt.scrolloff = 8         -- keep 8 lines visible above/below cursor
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undofile = true
+-- File handling and safety
+vim.opt.swapfile = false      -- disable swap files
+vim.opt.backup = false        -- disable backup files
+vim.opt.undofile = true       -- enable persistent undo history
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+-- Search behavior
+vim.opt.hlsearch = false      -- disable search result highlighting after search
+vim.opt.incsearch = true      -- enable incremental search
 
-vim.opt.termguicolors = true
-
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
-
-vim.opt.updatetime = 50
-
-vim.opt.colorcolumn = "80"
+-- Performance and behavior
+vim.opt.updatetime = 50       -- faster update time for events (in ms)
+vim.opt.isfname:append("@-@") -- add '@-@' to file name characters
