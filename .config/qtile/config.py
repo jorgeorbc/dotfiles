@@ -182,9 +182,9 @@ for i in groups:
 color = myColors.Kanagawa
 
 layout_theme = {
-    "border_width": 2,
-    "margin": 0,
-    "border_focus": color["blue"],
+    "border_width": 1,
+    "margin": 3,
+    "border_focus": color["green"],
     "border_normal": color["dark"],
 }
 layouts = [
@@ -204,7 +204,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="NotoSans Nerd Font Propo",
+    font="Maple Mono Medium",
     fontsize=18,
     padding=0,
     background=color["dark"],
@@ -214,20 +214,21 @@ extension_defaults = widget_defaults.copy()
 screens = [
     Screen(
         wallpaper=os.path.join(
-            os.path.expanduser("~"), ".config/qtile/wallpapers/arch.png"
+            os.path.expanduser("~"), ".config/qtile/wallpapers/space.png"
         ),
         wallpaper_mode="fill",
         top=bar.Bar(
             [
                 # GroupBox widget with custom colors
                 widget.GroupBox(
-                    margin_y=3,
-                    margin_x=0,
+                    fontsize=27,
+                    margin_y=2,
+                    margin_x=2,
                     padding=5,
                     borderwidth=3,
                     active=color["green"],  # Color of active group
                     inactive=color["red"],  # Color of inactive groups
-                    rounded=True,
+                    rounded=False,
                     highlight_method="block",
                     this_current_screen_border=color[
                         "blue"
@@ -247,11 +248,31 @@ screens = [
                 widget.CurrentLayout(
                     foreground=color["dark"], background=color["gray"]
                 ),
+                widget.Sep(
+                    linewidth=0,
+                    padding=5,
+                    background=color["blue"],
+                ),
                 widget.Systray(foreground=color["dark"], background=color["blue"]),
                 widget.Volume(foreground=color["dark"], background=color["blue"]),
+                widget.Sep(
+                    linewidth=0,
+                    padding=5,
+                    background=color["blue"],
+                ),
+                widget.Sep(
+                    linewidth=0,
+                    padding=5,
+                    background=color["green"],
+                ),
                 widget.Clock(
                     format="%Y/%m/%d %a %I:%M %p",
                     foreground=color["dark"],
+                    background=color["green"],
+                ),
+                widget.Sep(
+                    linewidth=0,
+                    padding=5,
                     background=color["green"],
                 ),
                 widget.TextBox(
@@ -264,9 +285,19 @@ screens = [
                     padding=5,
                     background=color["green"],
                 ),
+                widget.Sep(
+                    linewidth=0,
+                    padding=5,
+                    background=color["red"],
+                ),
                 widget.QuickExit(foreground=color["dark"], background=color["red"]),
+                widget.Sep(
+                    linewidth=0,
+                    padding=5,
+                    background=color["red"],
+                ),
             ],
-            27,
+            25,
             # Uncomment the following lines if you want to add borders to the bar
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
