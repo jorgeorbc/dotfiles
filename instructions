@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# === CONFIGURACIÓN PREVIA ===
+hostname="archlinux"
+username="usuario"
+locale="es_ES.UTF-8"
+keymap="la-latin1"
+timezone="America/Argentina/Buenos_Aires"
+disk="/dev/sdX"  # CAMBIA ESTO por tu disco real (ej: /dev/sda, /dev/nvme0n1)
+
+# === PARTICIONADO Y FORMATEO (ejemplo básico UEFI + /boot + / + /home) ===
+# Puedes hacerlo con cfdisk o fdisk si prefieres a mano.
+
+# === MONTAJE ===
+mount /dev/sdX2 /mnt
+mkdir -p /mnt/{boot,home}
+mount /dev/sdX1 /mnt/boot
+mount /dev/sdX3 /mnt/home
+
+# === INSTALACIÓN BASE ===
+pacstrap /mnt base linux linux-firmware vim nano sudo networkmanager grub efibootmgr bash-completion man-db man-pages
+
+# === CONFIGURACIÓN POST-INSTALACIÓN ===
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt /bin/bash <<EOF
+
+# Zona horaria y localización
+ln -sf /usr/share/zoneinfo/$timezone /etc/localtime
+hwclock --systohc
+
+echo "$locale UTF-8" >> /etc/locale.gen
+locale-gen
+echo "LANG=$locale" > /etc/locale.conf
+echo "KEYMAP=$keymap" > /etc/vconsole.conf
+
+# Nombre de host
+echo "$hostname" > /etc/hostname
+cat <<HOSTS > /etc/hosts
+127.0.0.1    localhost
+::1          localhost
+127.0.1.1    $hostname.localdomain $hostname
+HOSTS
+
+# Crear usuario
+useradd -m -G wheel -s /bin/bash $username
+passwd $username
+passwd root
+
+# Sudo para wheel group
+sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+
+# Grub instalación
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Activar servicios
+systemctl enable NetworkManager
+
+EOF
+
+echo "¡Instalación base completada! Puedes reiniciar."
+###############################################################
+
+# Instala yay para AUR
+sudo pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/yay.git
+cd yay && makepkg -si
+
+# Instala tu entorno gráfico, por ejemplo XFCE + LightDM
+sudo pacman -S xorg xfce4 xfce4-goodies lightdm lightdm-gtk-greeter
+sudo systemctl enable lightdm
+
+# Instala herramientas útiles
+sudo pacman -S neofetch htop unzip zip firefox zsh
+
+# Crea alias útiles
+echo "alias actualizar='sudo pacman -Syu'" >> ~/.bashrc
+echo "alias limpiar='sudo pacman -Rns \$(pacman -Qtdq)'" >> ~/.bashrc
+
+##################################################################
+# Guarda tus dotfiles en un repo Git
+mkdir -p ~/dotfiles
+cp ~/.bashrc ~/.zshrc ~/.config/* -r ~/dotfiles/
+cd ~/dotfiles
+git init
+git remote add origin git@github.com:tuusuario/dotfiles.git
+git add .
+git commit -m "dotfiles iniciales"
+git push -u origin main
